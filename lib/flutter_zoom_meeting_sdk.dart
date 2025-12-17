@@ -1,0 +1,27 @@
+import 'dart:async';
+
+import 'package:flutter_zoom_meeting_sdk/flutter_zoom_meeting_sdk_platform_interface.dart';
+export 'package:flutter_zoom_meeting_sdk/flutter_zoom_meeting_sdk_platform_interface.dart'
+    show ZoomOptions, ZoomMeetingOptions;
+
+class FlutterZoomMeetingSdk {
+  Future<List> init(ZoomOptions options) async =>
+      ZoomPlatform.instance.initZoom(options);
+
+  Future<bool> startMeeting(ZoomMeetingOptions options) async =>
+      ZoomPlatform.instance.startMeeting(options);
+
+  Future<bool> joinMeeting(ZoomMeetingOptions options) async =>
+      ZoomPlatform.instance.joinMeeting(options);
+
+  Future<List> meetingStatus(String meetingId) =>
+      ZoomPlatform.instance.meetingStatus(meetingId);
+
+  Stream<dynamic> get onMeetingStateChanged =>
+      ZoomPlatform.instance.onMeetingStatus();
+
+  Future<String?> getPlatformVersion() {
+    return ZoomPlatform.instance.getPlatformVersion();
+  }
+}
+

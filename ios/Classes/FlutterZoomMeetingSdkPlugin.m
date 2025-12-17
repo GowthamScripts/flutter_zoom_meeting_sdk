@@ -1,0 +1,13 @@
+#import "FlutterZoomMeetingSdkPlugin.h"
+#if __has_include(<flutter_zoom_meeting_sdk/flutter_zoom_meeting_sdk-Swift.h>)
+#import <flutter_zoom_meeting_sdk/flutter_zoom_meeting_sdk-Swift.h>
+#else
+#import "flutter_zoom_meeting_sdk-Swift.h"
+#endif
+
+@implementation FlutterZoomMeetingSdkPlugin
++ (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
+  [FlutterZoomMeetingSdkPlugin registerWithRegistrar:registrar];
+}
+@end
+

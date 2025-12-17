@@ -1,0 +1,20 @@
+# Zoom SDK ProGuard Rules
+-keep class us.zoom.** { *; }
+-keep class com.zipow.** { *; }
+-keep class us.zipow.** { *; }
+-keep class org.webrtc.** { *; }
+-dontwarn us.zoom.**
+-dontwarn com.zipow.**
+-dontwarn us.zipow.**
+-dontwarn org.webrtc.**
+
+# Keep native methods
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
+
+# Keep Parcelable implementations
+-keepclassmembers class * implements android.os.Parcelable {
+    static ** CREATOR;
+}
+
