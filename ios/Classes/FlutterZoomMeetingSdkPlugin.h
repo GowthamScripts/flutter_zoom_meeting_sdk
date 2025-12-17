@@ -1,5 +1,5 @@
 #import <Flutter/Flutter.h>
 
-@interface FlutterZoomMeetingSdkPluginObjC : NSObject<FlutterPlugin>
+@interface FlutterZoomMeetingSdkPlugin : NSObject<FlutterPlugin>
 @end
 

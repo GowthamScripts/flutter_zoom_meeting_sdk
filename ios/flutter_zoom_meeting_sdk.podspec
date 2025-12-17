@@ -13,9 +13,11 @@ Flutter plugin for Zoom Meeting SDK 6.6.11 with full meeting and webinar support
   s.dependency 'Flutter'
   s.platform         = :ios, '12.0'
 
+  # Required system frameworks for Zoom SDK
+  s.frameworks = 'VideoToolbox', 'ReplayKit', 'CoreMedia', 'AVFoundation', 'AudioToolbox', 'Accelerate', 'CoreVideo'
+
   # Bitcode must be disabled for Zoom SDK
   s.pod_target_xcconfig = {
-    'OTHER_LDFLAGS' => '-framework MobileRTC',
     'DEFINES_MODULE' => 'YES',
     'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386 arm64',
     'ENABLE_BITCODE' => 'NO'
@@ -27,8 +29,12 @@ Flutter plugin for Zoom Meeting SDK 6.6.11 with full meeting and webinar support
 
   s.swift_version = '5.0'
 
-  s.preserve_paths = 'MobileRTC.xcframework', 'MobileRTCResources.bundle', 'MobileRTCScreenShare.xcframework', 'zoomcml.xcframework'
-  s.vendored_frameworks = 'MobileRTC.xcframework'
-  s.resource = 'MobileRTCResources.bundle'
+  s.preserve_paths = 'Frameworks/**', 'Resources/**'
+  s.vendored_frameworks = [
+    'Frameworks/MobileRTC.xcframework',
+    'Frameworks/zoomcml.xcframework',
+    'Frameworks/MobileRTCScreenShare.xcframework'
+  ]
+  s.resources = ['Resources/MobileRTCResources.bundle']
 end
 

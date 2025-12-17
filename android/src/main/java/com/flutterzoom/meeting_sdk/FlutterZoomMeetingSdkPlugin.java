@@ -33,7 +33,7 @@ import us.zoom.sdk.ZoomSDKInitializeListener;
  * FlutterZoomMeetingSdkPlugin - Flutter plugin for Zoom Meeting SDK 6.6.11
  * Supports Android 15+ 16KB page size requirement
  */
-public class FlutterZoomMeetingSdkPlugin implements FlutterPlugin, MethodCallHandler, ActivityAware, ZoomSDKAuthenticationListener {
+public class FlutterZoomMeetingSdkPlugin implements FlutterPlugin, MethodCallHandler, ActivityAware {
     private MethodChannel channel;
     private EventChannel meetingStatusChannel;
     private Context context;
@@ -91,12 +91,7 @@ public class FlutterZoomMeetingSdkPlugin implements FlutterPlugin, MethodCallHan
         if (options.containsKey("jwtToken")) {
             initParams.jwtToken = options.get("jwtToken");
         }
-        if (options.containsKey("appKey")) {
-            initParams.appKey = options.get("appKey");
-        }
-        if (options.containsKey("appSecret")) {
-            initParams.appSecret = options.get("appSecret");
-        }
+        // Note: appKey/appSecret are deprecated in SDK 6.6.11, use jwtToken instead
 
         zoomSDK.initialize(
                 context,
@@ -221,22 +216,6 @@ public class FlutterZoomMeetingSdkPlugin implements FlutterPlugin, MethodCallHan
     }
 
     @Override
-    public void onZoomAuthIdentityExpired() {
-    }
-
-    @Override
-    public void onZoomSDKLoginResult(long result) {
-    }
-
-    @Override
-    public void onZoomSDKLogoutResult(long result) {
-    }
-
-    @Override
-    public void onZoomIdentityExpired() {
-    }
-
-    @Override
     public void onAttachedToActivity(@NonNull ActivityPluginBinding binding) {
     }
 
@@ -250,10 +229,6 @@ public class FlutterZoomMeetingSdkPlugin implements FlutterPlugin, MethodCallHan
 
     @Override
     public void onDetachedFromActivity() {
-    }
-
-    @Override
-    public void onNotificationServiceStatus(SDKNotificationServiceStatus status) {
     }
 }
 

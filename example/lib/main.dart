@@ -20,6 +20,7 @@ class _MyAppState extends State<MyApp> {
   String _meetingStatus = 'Not initialized';
   bool _isInitialized = false;
   final _zoomPlugin = FlutterZoomMeetingSdk();
+  final _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
   final _meetingIdController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -29,7 +30,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     initPlatformState();
-    _listenToMeetingStatus();
+    // Note: _listenToMeetingStatus() is called after SDK init
   }
 
   void _listenToMeetingStatus() {
@@ -61,7 +62,7 @@ class _MyAppState extends State<MyApp> {
     try {
       final result = await _zoomPlugin.init(ZoomOptions(
         domain: 'zoom.us',
-        jwtToken: 'YOUR_JWT_TOKEN_HERE', // Replace with your JWT token
+        jwtToken: '', // Replace with your JWT token
       ));
 
       if (!mounted) return;
@@ -70,6 +71,10 @@ class _MyAppState extends State<MyApp> {
         _isInitialized = result.isNotEmpty && result[0] == 0;
         _meetingStatus = _isInitialized ? 'SDK Initialized' : 'Failed to initialize SDK';
       });
+      
+      if (_isInitialized) {
+        _listenToMeetingStatus();
+      }
     } catch (e) {
       if (!mounted) return;
       setState(() {
@@ -154,7 +159,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   void _showSnackBar(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
+    _scaffoldMessengerKey.currentState?.showSnackBar(
       SnackBar(content: Text(message)),
     );
   }
@@ -162,6 +167,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scaffoldMessengerKey: _scaffoldMessengerKey,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
