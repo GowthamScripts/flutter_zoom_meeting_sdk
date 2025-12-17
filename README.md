@@ -53,11 +53,11 @@ dependencies:
 
 4. **iOS Setup:**
 
-   The MobileRTC.xcframework is included in this plugin, but you need to add the binary files:
+   Copy the MobileRTC.xcframework from Zoom SDK to your project's `ios/` folder. Then add it to your Xcode project:
    
-   Navigate to the plugin in your pub cache (usually `~/.pub-cache/git/flutter_zoom_meeting_sdk-*/`) and copy the MobileRTC binaries from Zoom SDK:
-   - Copy `MobileRTC.framework/MobileRTC` to `ios/MobileRTC.xcframework/ios-arm64/MobileRTC.framework/`
-   - Copy simulator `MobileRTC.framework/MobileRTC` to `ios/MobileRTC.xcframework/ios-arm64_x86_64-simulator/MobileRTC.framework/`
+   - Open `ios/Runner.xcworkspace` in Xcode
+   - Drag `MobileRTC.xcframework` into Frameworks, Libraries, and Embedded Content
+   - Set "Embed & Sign" for the framework
 
    Add to your app's `Info.plist`:
    ```xml
