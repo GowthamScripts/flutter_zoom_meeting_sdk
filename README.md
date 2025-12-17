@@ -101,11 +101,35 @@ zoom.onMeetingStateChanged.listen((status) {
 
 ## Android 15+ 16KB Page Size Support
 
-This plugin is fully compliant with Google Play's Android 15+ 16KB page size requirement. The `build.gradle` is configured with:
+This plugin is configured for Google Play's Android 15+ 16KB page size requirement:
 
 - `useLegacyPackaging = false` for proper JNI library alignment
 - Target SDK 35
 - NDK r27+ compatibility
+
+### Important Notes
+
+1. **Zoom SDK Compliance**: Zoom Meeting SDK claims 16KB support in versions ≥ 6.3.0, but some `.so` files may still be 4KB aligned (especially 32-bit slices). Manually verify alignment before uploading to Play Store.
+
+2. **Verify `.so` alignment**: Use this command to check your APK:
+   ```bash
+   unzip -p your-app.apk lib/arm64-v8a/*.so | file -
+   ```
+
+3. **NDK Build Flags**: For custom native code, use NDK r28+ and add:
+   ```gradle
+   android {
+       defaultConfig {
+           externalNativeBuild {
+               cmake {
+                   arguments "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON"
+               }
+           }
+       }
+   }
+   ```
+
+For more details, see [Android 16KB page size documentation](https://developer.android.com/guide/practices/page-sizes).
 
 ## License
 
