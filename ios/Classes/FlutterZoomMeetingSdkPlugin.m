@@ -5,9 +5,9 @@
 #import "flutter_zoom_meeting_sdk-Swift.h"
 #endif
 
-@implementation FlutterZoomMeetingSdkPlugin
+@implementation FlutterZoomMeetingSdkPluginObjC
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-  [FlutterZoomMeetingSdkPlugin registerWithRegistrar:registrar];
+  [SwiftFlutterZoomMeetingSdkPlugin registerWithRegistrar:registrar];
 }
 @end
 

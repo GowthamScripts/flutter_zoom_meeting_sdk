@@ -2,7 +2,7 @@ import Flutter
 import UIKit
 import MobileRTC
 
-public class FlutterZoomMeetingSdkPlugin: NSObject, FlutterPlugin, FlutterStreamHandler, MobileRTCMeetingServiceDelegate {
+@objc public class SwiftFlutterZoomMeetingSdkPlugin: NSObject, FlutterPlugin, FlutterStreamHandler, MobileRTCMeetingServiceDelegate {
     struct MeetingViewOptions {
         static let NO_BUTTON_AUDIO = 2
         static let NO_BUTTON_LEAVE = 128
@@ -19,10 +19,10 @@ public class FlutterZoomMeetingSdkPlugin: NSObject, FlutterPlugin, FlutterStream
     var authenticationDelegate: AuthenticationDelegate
     var eventSink: FlutterEventSink?
 
-    public static func register(with registrar: FlutterPluginRegistrar) {
+    @objc public static func register(with registrar: FlutterPluginRegistrar) {
         let messenger = registrar.messenger()
         let channel = FlutterMethodChannel(name: "plugins.flutter_zoom_meeting_sdk/zoom_channel", binaryMessenger: messenger)
-        let instance = FlutterZoomMeetingSdkPlugin()
+        let instance = SwiftFlutterZoomMeetingSdkPlugin()
         registrar.addMethodCallDelegate(instance, channel: channel)
 
         let eventChannel = FlutterEventChannel(name: "plugins.flutter_zoom_meeting_sdk/zoom_event_stream", binaryMessenger: messenger)
