@@ -42,18 +42,22 @@ dependencies:
 
 3. **Android Setup:**
 
-   Copy `mobilertc.aar` from Zoom SDK to the **plugin's** `android/libs/` folder:
+   Copy `mobilertc.aar` from Zoom SDK to your project's `android/app/libs/` folder. Create the `libs` folder if it doesn't exist.
+
+   Add to your app's `android/app/build.gradle`:
+   ```gradle
+   dependencies {
+       implementation fileTree(dir: 'libs', include: ['*.aar'])
+   }
    ```
-   ~/.pub-cache/hosted/pub.dev/flutter_zoom_meeting_sdk-x.x.x/android/libs/mobilertc.aar
-   ```
-   Or if using git dependency, locate the cached plugin in `.pub-cache/git/`.
 
 4. **iOS Setup:**
 
-   Copy `MobileRTC.xcframework` from Zoom SDK to the **plugin's** `ios/` folder:
-   ```
-   ~/.pub-cache/hosted/pub.dev/flutter_zoom_meeting_sdk-x.x.x/ios/MobileRTC.xcframework/
-   ```
+   The MobileRTC.xcframework is included in this plugin, but you need to add the binary files:
+   
+   Navigate to the plugin in your pub cache (usually `~/.pub-cache/git/flutter_zoom_meeting_sdk-*/`) and copy the MobileRTC binaries from Zoom SDK:
+   - Copy `MobileRTC.framework/MobileRTC` to `ios/MobileRTC.xcframework/ios-arm64/MobileRTC.framework/`
+   - Copy simulator `MobileRTC.framework/MobileRTC` to `ios/MobileRTC.xcframework/ios-arm64_x86_64-simulator/MobileRTC.framework/`
 
    Add to your app's `Info.plist`:
    ```xml
