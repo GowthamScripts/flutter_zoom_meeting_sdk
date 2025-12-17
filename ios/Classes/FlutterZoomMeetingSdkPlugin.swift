@@ -66,12 +66,7 @@ public class FlutterZoomMeetingSdkPlugin: NSObject, FlutterPlugin, FlutterStream
         if let jwtToken = arguments["jwtToken"] {
             auth?.jwtToken = jwtToken
         }
-        if let appKey = arguments["appKey"] {
-            auth?.clientKey = appKey
-        }
-        if let appSecret = arguments["appSecret"] {
-            auth?.clientSecret = appSecret
-        }
+        // Note: clientKey/clientSecret removed in SDK 6.x - JWT authentication is required
 
         auth?.sdkAuth()
     }

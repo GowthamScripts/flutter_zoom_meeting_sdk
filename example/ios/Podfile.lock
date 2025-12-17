@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - flutter_zoom_meeting_sdk (1.0.0):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - flutter_zoom_meeting_sdk (from `.symlinks/plugins/flutter_zoom_meeting_sdk/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  flutter_zoom_meeting_sdk:
+    :path: ".symlinks/plugins/flutter_zoom_meeting_sdk/ios"
+
+SPEC CHECKSUMS:
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  flutter_zoom_meeting_sdk: cc18e5705025afbf56588e49f6589a989bb23ce5
+
+PODFILE CHECKSUM: 8930bd1600d87c869a6e0eee3cffffa464992c05
+
+COCOAPODS: 1.16.2
